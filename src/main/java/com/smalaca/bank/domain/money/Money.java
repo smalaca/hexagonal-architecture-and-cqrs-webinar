@@ -30,4 +30,12 @@ public class Money {
     public Money add(Money money) {
         return new Money(amount.add(money.amount), currency);
     }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public String getCurrency() {
+        return currency.name();
+    }
 }

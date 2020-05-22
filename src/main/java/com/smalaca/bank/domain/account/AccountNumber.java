@@ -11,4 +11,8 @@ class AccountNumber {
     AccountNumber(String number) {
         this.number = number;
     }
+
+    String getNumber() {
+        return number;
+    }
 }

@@ -1,6 +1,7 @@
 package com.smalaca.bank.query.account;
 
 import com.smalaca.bank.domain.account.Account;
+import com.smalaca.bank.domain.account.AccountDto;
 import com.smalaca.bank.infrastructure.jpa.springdata.SpringDataAccountRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,23 +22,28 @@ public class AccountQueryService {
         Iterable<Account> accounts = springDataAccountRepository.findAll();
 
         return StreamSupport.stream(accounts.spliterator(), false)
+                .map(Account::asDto)
                 .map(this::asAccountSummary)
                 .collect(toList());
     }
 
     public AccountSummary summaryOf(Long id) {
-        return asAccountSummary(springDataAccountRepository.findById(id).get());
+        Account account = springDataAccountRepository.findById(id).get();
+
+        return asAccountSummary(account.asDto());
     }
 
-    private AccountSummary asAccountSummary(Account account) {
+    private AccountSummary asAccountSummary(AccountDto accountDto) {
         return null;
     }
 
     public AccountDetails detailsOf(Long id) {
-        return asAccountDetails(springDataAccountRepository.findById(id).get());
+        Account account = springDataAccountRepository.findById(id).get();
+
+        return asAccountDetails(account.asDto());
     }
 
-    private AccountDetails asAccountDetails(Account account) {
+    private AccountDetails asAccountDetails(AccountDto accountDto) {
         return null;
     }
 }

@@ -28,4 +28,8 @@ public class Account {
     void deposit(Money money) {
         balance = balance.add(money);
     }
+
+    public AccountDto asDto() {
+        return new AccountDto(id, number.getNumber(), balance.getAmount(), balance.getCurrency());
+    }
 }
