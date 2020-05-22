@@ -1,7 +1,6 @@
 package com.smalaca.bank.infrastructure.jpa.adapter;
 
 import com.smalaca.bank.domain.account.Account;
-import com.smalaca.bank.domain.account.AccountId;
 import com.smalaca.bank.domain.account.AccountRepository;
 import com.smalaca.bank.infrastructure.jpa.springdata.SpringDataAccountRepository;
 import org.springframework.stereotype.Repository;
@@ -15,7 +14,7 @@ public class JpaAccountRepository implements AccountRepository {
     }
 
     @Override
-    public Account find(AccountId accountId) {
+    public Account find(Long accountId) {
         return springDataAccountRepository.findById(accountId).get();
     }
 

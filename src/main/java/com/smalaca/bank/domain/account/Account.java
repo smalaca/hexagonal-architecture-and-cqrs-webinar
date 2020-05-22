@@ -2,14 +2,13 @@ package com.smalaca.bank.domain.account;
 
 import com.smalaca.bank.domain.money.Money;
 
-import javax.persistence.Embedded;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class Account {
-    @EmbeddedId
-    private AccountId id;
+    @Id
+    @GeneratedValue
+    private Long id;
     @Embedded
     private AccountNumber number;
     @Embedded
@@ -17,8 +16,7 @@ public class Account {
 
     private Account() {}
 
-    Account(AccountId id, AccountNumber number, Money balance) {
-        this.id = id;
+    Account(AccountNumber number, Money balance) {
         this.number = number;
         this.balance = balance;
     }

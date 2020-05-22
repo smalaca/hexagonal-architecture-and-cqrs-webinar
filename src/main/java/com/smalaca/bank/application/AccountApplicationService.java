@@ -1,7 +1,6 @@
 package com.smalaca.bank.application;
 
 import com.smalaca.bank.domain.account.Account;
-import com.smalaca.bank.domain.account.AccountId;
 import com.smalaca.bank.domain.account.AccountRepository;
 import com.smalaca.bank.domain.account.AccountService;
 import com.smalaca.bank.domain.money.Currency;
@@ -19,11 +18,8 @@ public class AccountApplicationService {
 
     @Transactional
     public void transfer(TransferInput transferInput) {
-        AccountId from = AccountId.from(transferInput.getFrom());
-        Account accountFrom = accountRepository.find(from);
-
-        AccountId to = AccountId.from(transferInput.getTo());
-        Account accountTo = accountRepository.find(to);
+        Account accountFrom = accountRepository.find(transferInput.getFrom());
+        Account accountTo = accountRepository.find(transferInput.getTo());
 
         Currency currency = Currency.from(transferInput.getMoneyCurrency());
         Money money = Money.from(transferInput.getMoneyAmount(), currency);
