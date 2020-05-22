@@ -2,10 +2,20 @@ package com.smalaca.bank.domain.account;
 
 import com.smalaca.bank.domain.money.Money;
 
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+
+@Entity
 public class Account {
-    private final AccountId id;
-    private final AccountNumber number;
+    @EmbeddedId
+    private AccountId id;
+    @Embedded
+    private AccountNumber number;
+    @Embedded
     private Money balance;
+
+    private Account() {}
 
     Account(AccountId id, AccountNumber number, Money balance) {
         this.id = id;

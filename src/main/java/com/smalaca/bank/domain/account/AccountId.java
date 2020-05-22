@@ -1,7 +1,13 @@
 package com.smalaca.bank.domain.account;
 
-public class AccountId {
-    private final Long id;
+import javax.persistence.Embeddable;
+import java.io.Serializable;
+
+@Embeddable
+public class AccountId implements Serializable {
+    private Long id;
+
+    private AccountId() {}
 
     private AccountId(Long id) {
         this.id = id;

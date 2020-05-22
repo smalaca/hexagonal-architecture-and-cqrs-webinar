@@ -1,10 +1,18 @@
 package com.smalaca.bank.domain.money;
 
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 
+@Embeddable
 public class Money {
-    private final BigDecimal amount;
-    private final Currency currency;
+    private BigDecimal amount;
+
+    @Enumerated(EnumType.STRING)
+    private Currency currency;
+
+    private Money() {}
 
     private Money(BigDecimal amount, Currency currency) {
         this.amount = amount;
