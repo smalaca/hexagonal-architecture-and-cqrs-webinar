@@ -25,23 +25,18 @@ public class AccountController {
     }
 
     @PostMapping("/transfer")
-    public void transfer(@RequestBody TransferDto transferDto) {
-        LOGGER.trace("Starts transfer: {}", transferDto);
+    public void transfer(@RequestBody TransferInput transferInput) {
+        LOGGER.trace("Starts transfer: {}", transferInput);
 
-        TransferInput transferInput = asTransferInput(transferDto);
         accountApplicationService.transfer(transferInput);
 
-        HistoryTransfer historyTransfer = asHistoryTransfer(transferDto);
+        HistoryTransfer historyTransfer = asHistoryTransfer(transferInput);
         historyService.store(historyTransfer);
 
-        LOGGER.trace("Ends transfer: {}", transferDto);
+        LOGGER.trace("Ends transfer: {}", transferInput);
     }
 
-    private HistoryTransfer asHistoryTransfer(TransferDto transferDto) {
-        return null;
-    }
-
-    private TransferInput asTransferInput(TransferDto transferDto) {
+    private HistoryTransfer asHistoryTransfer(TransferInput transferInput) {
         return null;
     }
 }

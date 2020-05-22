@@ -19,28 +19,23 @@ public class InvestmentTrigger {
     }
 
     public void invest() {
-        List<Investment> investments = readFromFile();
+        List<TransferInput> investments = readFromFile();
 
         investments.forEach(this::invest);
     }
 
-    private void invest(Investment investment) {
-        TransferInput transferInput = asTransferInput(investment);
+    private void invest(TransferInput transferInput) {
         accountApplicationService.transfer(transferInput);
 
-        Notification notification = asNotification(investment);
+        Notification notification = asNotification(transferInput);
         notificationService.send(notification);
     }
 
-    private Notification asNotification(Investment investment) {
+    private Notification asNotification(TransferInput transferInput) {
         return null;
     }
 
-    private TransferInput asTransferInput(Investment investment) {
-        return null;
-    }
-
-    private List<Investment> readFromFile() {
+    private List<TransferInput> readFromFile() {
         return null;
     }
 }
